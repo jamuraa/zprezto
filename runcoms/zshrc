@@ -11,3 +11,26 @@ if [[ -s "${ZDOTDIR:-$HOME}/.zprezto/init.zsh" ]]; then
 fi
 
 # Customize to your needs...
+
+# Generally always useful aliases
+alias apt="sudo apt"
+alias ccal="nocorrect ccal"
+alias durn="du --max-depth=1 -k | sort -rn"
+
+# Debian email
+export DEBEMAIL="Marie Janssen <jamuraa@debian.org>"
+
+# include local scripts and prefer them
+path=($HOME/local/bin $path)
+
+# #if a host-local config exists, source it
+if [[ -s "${ZDOTDIR:-$HOME}/.zshrc.local" ]]; then
+  source "${ZDOTDIR:-$HOME}/.zshrc.local"
+fi
+
+# in Stunning 256 colors (where available)
+if [ -e /usr/share/terminfo/r/rxvt-256color ]; then
+  export TERM='rxvt-256color'
+else
+  export TERM='xterm-color'
+fi
